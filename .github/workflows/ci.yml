@@ -1,0 +1,29 @@
+name: CI - Testes com Jest
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: 🧩 Instalação do Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: 📦 Instalar dependências
+        run: npm ci
+
+      - name: 🧪 Rodar testes
+        run: npm run test:ci
+
+      - name: 🧾 Versão do Node.js usada
+        run: node -v
